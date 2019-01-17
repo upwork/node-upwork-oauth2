@@ -63,7 +63,7 @@ It also describes how to use your own client together with this Upwork library.
 
 To install the library please run the following command:
 
-    $ npm install node-upwork-oauth2
+    $ npm install @upwork/node-upwork-oauth2
 
 ## Quick start
 
