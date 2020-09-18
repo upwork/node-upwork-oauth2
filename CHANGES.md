@@ -1,5 +1,8 @@
 # Release History
 
+## 2.1.2
+* Send Message to a Batch of Rooms API
+
 ## 2.1.1
 * Add Room Messages API
 * Sync-up routers with OAuth1 version
