@@ -4,7 +4,7 @@ Node.JS bindings for Upwork API (OAuth2)
 [![License](http://img.shields.io/packagist/l/upwork/php-upwork.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
 [![npm](https://img.shields.io/npm/v/node-upwork-oauth2.svg)](https://www.npmjs.com/package/node-upwork-oauth2)
 [![GitHub release](https://img.shields.io/github/release/upwork/node-upwork-oauth2.svg)](https://github.com/upwork/node-upwork-oauth2/releases)
-[![Build Status](https://travis-ci.org/upwork/node-upwork-oauth2.svg)](https://travis-ci.org/upwork/node-upwork-oauth2)
+[![Build Status](https://github.com/upwork/node-upwork-oauth2/workflows/build/badge.svg)](https://github.com/upwork/node-upwork-oauth2/actions)
 
 # Introduction
 This project provides a set of resources of Upwork API from http://developers.upwork.com based on OAuth 2.0.
