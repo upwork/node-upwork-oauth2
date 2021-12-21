@@ -15,7 +15,7 @@
   "homepage": "https://developers.upwork.com",
   "repository": {
     "type": "git",
-    "url": "git://github.com/upwork/node-upwork.git"
+    "url": "git://github.com/upwork/node-upwork-oauth2.git"
   },
   "main": "index",
   "dependencies": {
