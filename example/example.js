@@ -25,6 +25,7 @@ var UpworkApi = require('node-upwork-oauth2') // use if package is installed via
 //  , Auth = require('../lib/routers/auth').Auth // uncomment to use inside current package/sources
   , Auth = require('node-upwork-oauth2/lib/routers/auth').Auth // use if package is installed via npm
   , Messages = require('node-upwork-oauth2/lib/routers/messages').Messages // use if package is installed via npm
+  , Graphql = require('node-upwork-oauth2/lib/routers/graphql').Graphql // use if package is installed via npm
   , rl = require('readline');
 
 // you can use your own client for OAuth2 (Authorization Code Grant) routine, just identify it here
@@ -92,6 +93,30 @@ function sendMessageToRoom(api, callback) {
   });
 }
 
+// send GraphQL query
+function sendGraphqlQuery(api, callback) {
+  // make a call
+  var graphql = new Graphql(api);
+  var params = {
+    'query': `query {
+      user {
+        id
+        nid
+        rid
+      }
+      organization {
+        id
+      }
+    }`,
+  };
+  graphql.execute(params, (error, httpStatus, data) => {
+    // check error and httpStatus if needed and run your own error handler
+    debug(httpStatus, 'response status');
+    debug(data, 'received response');
+    callback(data);
+  });
+}
+
 (function main() {
   // uncomment only if you want to use your own client
   // make sure you know what you're doing
@@ -100,6 +125,8 @@ function sendMessageToRoom(api, callback) {
 
   // use a predefined client for OAuth routine
   var api = new UpworkApi(config);
+  // GraphQL requests require X-Upwork-API-TenantId header, which can be setup using the following method
+  // api.setOrgUidHeader('1234567890'); // 	Organization UID
 
   if (!config.accessToken || !config.refreshToken) {
     // run authorization in case we haven't done it yet
@@ -130,6 +157,10 @@ function sendMessageToRoom(api, callback) {
         console.log('Hello: ' + data.auth_user.first_name);
       });
       sendMessageToRoom(api, (data) => {
+        // do smth here with the data
+	console.log(data);
+      });
+      sendGraphqlQuery(api, (data) => {
         // do smth here with the data
 	console.log(data);
       });
