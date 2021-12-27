@@ -126,7 +126,7 @@ function sendGraphqlQuery(api, callback) {
   // use a predefined client for OAuth routine
   var api = new UpworkApi(config);
   // GraphQL requests require X-Upwork-API-TenantId header, which can be setup using the following method
-  // api.setOrgUidHeader('1234567890'); // 	Organization UID
+  // api.setOrgUidHeader('1234567890'); // Organization UID (optional)
 
   if (!config.accessToken || !config.refreshToken) {
     // run authorization in case we haven't done it yet
