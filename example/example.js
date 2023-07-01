@@ -11,7 +11,8 @@
 var config = {
   'clientId' : 'xxxxxxxx',
   'clientSecret' : 'xxxxxxxx',
-  'redirectUri' : 'xxxxxxxx',
+  'redirectUri': 'xxxxxxxx',
+//  'grantType' : 'client_credentials', // Required only for Client Credentials Grant
 //  'accessToken' : 'xxxxxxxx', // assign if known
 //  'refreshToken' : 'xxxxxxxx', // assign if known
 //  'expiresIn' : '86399', // assign if known
@@ -43,6 +44,7 @@ var UpworkApi = require('node-upwork-oauth2') // use if package is installed via
 
 // a function to get access/refresh token pair
 function getAccessTokenPair(api, callback) {
+  // start Code Authorization Grant
   debug('getting access/refresh token pair');
   // get authorization url
   var url = api.getAuthorizationUrl(config.redirectUri);
@@ -63,6 +65,17 @@ function getAccessTokenPair(api, callback) {
       callback(accessToken);
     });
   });
+  // end Code Authorization Grant
+
+  // start Client Credentials Grant
+  // debug('getting access token pair');
+  // api.getToken("", function(error, accessToken) {
+    // if (error) throw new Error(error);
+
+    // debug(accessToken, 'got an access token');
+    // callback(accessToken);
+  // });
+  // end Client Credentials Grant
 };
 
 // get my data

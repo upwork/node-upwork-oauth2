@@ -1,5 +1,9 @@
 # Release History
 
+## 2.2.0
+* Add support of Client Credentials Grant
+* Fix issue with "debug" config option
+
 ## 2.1.3
 * Add GraphQL support
 
