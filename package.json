@@ -1,7 +1,7 @@
 {
   "name": "@upwork/node-upwork-oauth2",
   "description": "Node.JS bindings for Upwork API (OAuth2)",
-  "version": "2.1.3",
+  "version": "2.2.0",
   "author": {
     "name": "Maksym Novozhylov",
     "email": "mnovozhilov@upwork.com"
@@ -19,7 +19,7 @@
   },
   "main": "index",
   "dependencies": {
-    "simple-oauth2": "1.5.0",
+    "simple-oauth2": "5.0.0",
     "request": "2.88.2",
     "pkginfo": "*"
   },
@@ -34,7 +34,7 @@
     "test": "mocha --timeout 3500"
   },
   "devDependencies": {
-    "mocha": "~7.1.2",
+    "mocha": "~10.2.0",
     "ansi-regex": ">=5.0.1",
     "json-schema": ">=0.4.0"
   },
