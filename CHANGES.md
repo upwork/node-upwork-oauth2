@@ -1,5 +1,8 @@
 # Release History
 
+## 2.2.2
+* Fix issue#29
+
 ## 2.2.1
 * Fix base url
 
