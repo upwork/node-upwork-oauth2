@@ -23,9 +23,6 @@ var config = {
 
 //var UpworkApi = require('../') // uncomment to use inside current package/sources
 var UpworkApi = require('node-upwork-oauth2') // use if package is installed via npm
-//  , Auth = require('../lib/routers/auth').Auth // uncomment to use inside current package/sources
-  , Auth = require('node-upwork-oauth2/lib/routers/auth').Auth // use if package is installed via npm
-  , Messages = require('node-upwork-oauth2/lib/routers/messages').Messages // use if package is installed via npm
   , Graphql = require('node-upwork-oauth2/lib/routers/graphql').Graphql // use if package is installed via npm
   , rl = require('readline');
 
@@ -78,34 +75,6 @@ function getAccessTokenPair(api, callback) {
   // end Client Credentials Grant
 };
 
-// get my data
-function getUserData(api, callback) {
-  // make a call
-  var auth = new Auth(api);
-  auth.getUserInfo(function(error, httpStatus, data) {
-    // check error and httpStatus if needed and run your own error handler
-    debug(httpStatus, 'response status');
-    debug(data, 'received response');
-    callback(data);
-  });
-}
-
-// post a message
-function sendMessageToRoom(api, callback) {
-  // make a call
-  var messages = new Messages(api);
-  var params = {
-    'story': '{"message": "a test message", "userId": "~01xxxxxxxx"}'
-  };
-  // NOTE: parameters are wrong - the response will produce an error, for instance
-  messages.sendMessageToRoom('company_id', 'room_id', params, (error, httpStatus, data) => {
-    // check error and httpStatus if needed and run your own error handler
-    debug(httpStatus, 'response status');
-    debug(data, 'received response');
-    callback(data);
-  });
-}
-
 // send GraphQL query
 function sendGraphqlQuery(api, callback) {
   // make a call
@@ -149,10 +118,10 @@ function sendGraphqlQuery(api, callback) {
       // store access/refresh token data in the safe place!
 
       api.setNewAccessTokenPair(tokenPair, function(tokenPair) {
-        // get my auth data
-        getUserData(api, (data) => {
-          debug(data, 'response');
-          console.log('Hello: ' + data.auth_user.first_name);
+        // send graphql request
+        sendGraphqlQuery(api, (data) => {
+          // do smth here with the data
+          console.log(data);
         });
       });
     });
@@ -165,17 +134,9 @@ function sendGraphqlQuery(api, callback) {
       // in case it's expired, i.e. expires_at < time(). Make sure you replace the
       // old token accordingly in your security storage. Simply, compare the old
       // access token with the new one returned in tokenPair to sync-up the data
-      getUserData(api, (data) => {
-        // first_name
-        console.log('Hello: ' + data.auth_user.first_name);
-      });
-      sendMessageToRoom(api, (data) => {
-        // do smth here with the data
-	console.log(data);
-      });
       sendGraphqlQuery(api, (data) => {
         // do smth here with the data
-	console.log(data);
+	      console.log(data);
       });
     });
   }
