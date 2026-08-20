@@ -22,8 +22,8 @@ var config = {
 };
 
 //var UpworkApi = require('../') // uncomment to use inside current package/sources
-var UpworkApi = require('node-upwork-oauth2') // use if package is installed via npm
-  , Graphql = require('node-upwork-oauth2/lib/routers/graphql').Graphql // use if package is installed via npm
+var UpworkApi = require('@upwork/node-upwork-oauth2') // use if package is installed via npm
+  , Graphql = require('@upwork/node-upwork-oauth2/lib/routers/graphql').Graphql // use if package is installed via npm
   , rl = require('readline');
 
 // you can use your own client for OAuth2 (Authorization Code Grant) routine, just identify it here
